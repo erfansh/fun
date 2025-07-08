@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>سایت ساده PSG</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #f9f9f9;
+      direction: rtl;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    textarea {
+      width: 100%;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #009688;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ساده‌ترین PSG</h1>
+    <label for="inputSubscription">لینک سابسکریپشن (Base64):</label>
+    <textarea id="inputSubscription" rows="5" placeholder="لینک را اینجا وارد کنید"></textarea>
+    <button id="btnDecode">Decode و نمایش</button>
+    <h2>کانفیگ‌ها:</h2>
+    <pre id="output"></pre>
+  </div>
+
+  <script>
+    document.getElementById('btnDecode').addEventListener('click', () => {
+      const input = document.getElementById('inputSubscription').value.trim();
+      const output = document.getElementById('output');
+
+      if (!input) {
+        output.textContent = 'لطفاً یک لینک سابسکریپشن وارد کنید.';
+        return;
+      }
+
+      try {
+        const decoded = atob(input);
+        output.textContent = decoded;
+      } catch (e) {
+        output.textContent = 'خطا در decode لینک: لینک معتبر نیست.';
+      }
+    });
+  </script>
+</body>
+</html>
